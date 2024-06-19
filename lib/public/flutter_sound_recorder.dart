@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 /*
  * Copyright 2018, 2019, 2020 Dooboolab.
  *
@@ -748,6 +749,7 @@ class FlutterSoundRecorder implements FlutterSoundRecorderCallback {
       r = await _stop();
     } on Exception catch (e) {
       _logger.e(e);
+      rethrow;
     }
     _logger.d('FS:<--- _stopRecorder : $r');
     return r;
@@ -914,6 +916,9 @@ class _RecorderException implements Exception {
   _RecorderException(this._message);
 
   String get message => _message;
+
+  @override
+  String toString() => '_RecorderException(_message: $_message)';
 }
 
 class _RecorderRunningException extends _RecorderException {
